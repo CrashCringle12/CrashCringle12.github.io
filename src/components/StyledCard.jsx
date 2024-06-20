@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // Styles
 import styled from "styled-components";
 // Router
@@ -89,10 +89,22 @@ const StyledCardComponent = styled.div`
 // #region component
 const StyledCard = ({ image, name, subtitle, artist, description, url, video, pack }) => {
   const imagePath = image ? `${process.env.PUBLIC_URL}/images/charts/${image}` : GH; // Use absolute path
+  const [imgSrc, setImgSrc] = useState(imagePath);
+  const [retry, setRetry] = useState(0);
   const navigate = useNavigate();
 
   const handleDownloadClick = () => {
     navigate(`/Packs?scrollTo=${pack.replace("Cringle ", "")}`);
+  };
+
+  const handleImageError = () => {
+    if (retry < 3) {
+      console.log(`Retrying image for ${name}: attempt ${retry + 1}`);
+      setRetry(retry + 1);
+      setImgSrc(imagePath + `?retry=${retry + 1}`); // Add a query param to force reload
+    } else {
+      setImgSrc(GH);
+    }
   };
 
   // Debugging: Log the image path to the console
@@ -101,15 +113,12 @@ const StyledCard = ({ image, name, subtitle, artist, description, url, video, pa
   return (
     <StyledCardComponent>
       <Card>
-        <Card.Img
+      <Card.Img
           variant="top"
-          src={imagePath} // Use the full path to the image
+          src={imgSrc} // Use the full path to the image
           alt={subtitle}
           className="mx-auto"
-          onError={(e) => {
-            console.error(`Failed to load image for ${name}: ${imagePath}`);
-            e.target.src = GH; // Fallback to default image
-          }}
+          onError={handleImageError}
         />
         <Card.Body className="overflow-auto text-center">
           <Card.Title className="card-title">{name}</Card.Title>

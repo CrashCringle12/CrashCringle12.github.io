@@ -41,7 +41,6 @@ const SocialLinks = () => {
       {isSuccess &&
         socialsData.map((element, index) => {
           let icon;
-          console.log(element.provider);
           switch (element.provider) {
             case "linkedin":
               icon = <Icon icon="fa-brands:linkedin" />;
