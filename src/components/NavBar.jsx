@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 // Router
 import { Link, useLocation } from "react-router-dom";
 // Images
-import defaultLogo from "../images/defaultNavLogo.svg";
+import defaultLogo from "../images/Image.png";
 // Components
 import { Link as ScrollLink } from "react-scroll";
 import { Container, Nav, Navbar } from "react-bootstrap";
@@ -29,15 +29,16 @@ const navLinks = {
   ],
   packs: [
     { id: "1P", name: "Home", to: "/" },
-    { id: "2P", name: "Philosophy Statement", to: "Philosophy" },
-    { id: "3P", name: "Captivation", to: "Captivation" },
-    { id: "4P", name: "Hollow", to: "Hollow" },
-    { id: "5P", name: "Odyssey", to: "Odyssey" },
-    { id: "6P", name: "Desolation", to: "Desolation" },
-    { id: "7P", name: "Asylum", to: "Asylum" },
-    { id: "8P", name: "Isle", to: "Isle" },
-    { id: "9P", name: "Haven", to: "Haven" },
-    { id: "10P", name: "Paradise", to: "Paradise" },
+    { id: "2P", name: "Chart Search", to: "/All-StepCharts" },
+    { id: "3P", name: "Philosophy Statement", to: "Philosophy" },
+    { id: "4P", name: "Captivation", to: "Captivation" },
+    { id: "5P", name: "Hollow", to: "Hollow" },
+    { id: "6P", name: "Odyssey", to: "Odyssey" },
+    { id: "7P", name: "Desolation", to: "Desolation" },
+    { id: "8P", name: "Asylum", to: "Asylum" },
+    { id: "9P", name: "Isle", to: "Isle" },
+    { id: "10P", name: "Haven", to: "Haven" },
+    { id: "11P", name: "Paradise", to: "Paradise" },
   ]
 };
 // #endregion
@@ -119,7 +120,7 @@ const NavBar = ({ Logo }) => {
                 ? navLinks.packs.map((el, index) => (
                     <React.Fragment key={el.id}>
                       <StyledNavItem>
-                     {el.name === "Home" && <Link
+                     {(el.name === "Home" || el.name === "Chart Search") && <Link
                         to={el.to}
                         className={
                           pathname === el.route ? "nav-link active" : "nav-link"
@@ -128,7 +129,7 @@ const NavBar = ({ Logo }) => {
                       >
                         {el.name}
                       </Link>}
-                      {el.name !== "Home" &&
+                      {(el.name !== "Home" && el.name !== "Chart Search") &&
                         <ScrollLink
                           to={el.to}
                           spy={true}

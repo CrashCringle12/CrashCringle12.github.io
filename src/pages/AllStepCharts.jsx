@@ -51,20 +51,48 @@ const AllCharts = () => {
   }, [userData]);
 
   React.useEffect(() => {
-    if (searchInput !== "") {
-      const filteredData = data.filter((item) => {
-        return (
-          item.name.toLowerCase().includes(searchInput.toLowerCase()) ||
-          (item.subtitle && item.subtitle.toLowerCase().includes(searchInput.toLowerCase())) ||
-          (item.pack && item.pack.toLowerCase().includes(searchInput.toLowerCase()))
-        );
-      });
+    const updateFilteredResults = () => {
+      const currentData = searchInput
+        ? data.filter((item) => {
+            return (
+              item.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+              (item.subtitle && item.subtitle.toLowerCase().includes(searchInput.toLowerCase())) ||
+              (item.pack && item.pack.toLowerCase().includes(searchInput.toLowerCase())) ||
+              (item.description && item.description.toLowerCase().includes(searchInput.toLowerCase())) ||
+              (item.artist && item.artist.toLowerCase().includes(searchInput.toLowerCase()))
+            );
+          })
+        : data;
+
+      const itemsPerPage = 6;
+      const totalPages = Math.ceil(currentData.length / itemsPerPage);
+      const startIdx = (activePage - 1) * itemsPerPage;
+      const endIdx = startIdx + itemsPerPage;
+      setFilteredResults(currentData.slice(startIdx, endIdx));
+
+      const visiblePages = 100; // Number of visible page items
+      const halfVisible = Math.floor(visiblePages / 2);
+
       const tempPageItems = [];
-      for (
-        let number = 1;
-        number <= Math.ceil(filteredData.length / 6);
-        number++
-      ) {
+      let startPage, endPage;
+
+      if (totalPages <= visiblePages) {
+        startPage = 1;
+        endPage = totalPages;
+      } else {
+        if (activePage <= halfVisible) {
+          startPage = 1;
+          endPage = visiblePages;
+        } else if (activePage + halfVisible >= totalPages) {
+          startPage = totalPages - visiblePages + 1;
+          endPage = totalPages;
+        } else {
+          startPage = activePage - halfVisible;
+          endPage = activePage + halfVisible;
+        }
+      }
+
+      for (let number = startPage; number <= endPage; number++) {
         tempPageItems.push(
           <Pagination.Item
             key={number}
@@ -74,38 +102,12 @@ const AllCharts = () => {
             {number}
           </Pagination.Item>
         );
-        setPageItems([...tempPageItems]);
       }
-      if (activePage === 1) {
-        setFilteredResults(filteredData.slice(0, 6));
-      } else {
-        setFilteredResults(
-          filteredData.slice((activePage - 1) * 6, (activePage - 1) * 6 + 6)
-        );
-      }
-    } else {
-      const tempPageItems = [];
-      for (let number = 1; number <= Math.ceil(data.length / 6); number++) {
-        tempPageItems.push(
-          <Pagination.Item
-            key={number}
-            active={number === activePage}
-            onClick={() => setActivePage(number)}
-          >
-            {number}
-          </Pagination.Item>
-        );
-        setPageItems([...tempPageItems]);
-      }
-      if (activePage === 1) {
-        setFilteredResults(data.slice(0, 6));
-      } else {
-        setFilteredResults(
-          data.slice((activePage - 1) * 6, (activePage - 1) * 6 + 6)
-        );
-      }
-    }
-  }, [searchInput, data, pageItems.length, activePage]);
+      setPageItems(tempPageItems);
+    };
+
+    updateFilteredResults();
+  }, [searchInput, data, activePage]);
 
   React.useEffect(() => {
     setActivePage(1);
@@ -134,7 +136,7 @@ const AllCharts = () => {
               <Icon icon="ic:round-search" />
             </InputGroup.Text>
             <FormControl
-              placeholder="Search by name, subtitle, or pack"
+              placeholder="Search by name, subtitle, artist, or pack"
               aria-label="Search charts"
               aria-describedby="search"
               onChange={(e) => setSearchInput(e.currentTarget.value)}
@@ -147,6 +149,7 @@ const AllCharts = () => {
               name,
               subtitle,
               description,
+              artist,
               pack,
               html_url,
               video_url,
@@ -158,6 +161,7 @@ const AllCharts = () => {
                     name={name}
                     subtitle={subtitle}
                     description={description}
+                    artist={artist}
                     pack={pack}
                     url={html_url}
                     video={video_url}
@@ -167,31 +171,23 @@ const AllCharts = () => {
             })}
           </Row>
           <Container className="d-flex justify-content-center mt-5">
-            {pageItems.length <= 2 ? (
-              <Pagination size="lg">{pageItems}</Pagination>
-            ) : (
-              <Pagination>
-                <Pagination.Prev
-                  onClick={() =>
-                    activePage === 1
-                      ? setActivePage(pageItems.length)
-                      : setActivePage(activePage - 1)
-                  }
-                />
-                {pageItems[0]}
-                <Pagination.Ellipsis />
-                <Pagination.Item active={true}>{activePage}</Pagination.Item>
-                <Pagination.Ellipsis />
-                {pageItems[pageItems.length - 1]}
-                <Pagination.Next
-                  onClick={() =>
-                    activePage === pageItems.length
-                      ? setActivePage(1)
-                      : setActivePage(activePage + 1)
-                  }
-                />
-              </Pagination>
-            )}
+            <Pagination>
+              <Pagination.Prev
+                onClick={() =>
+                  activePage === 1
+                    ? setActivePage(pageItems.length)
+                    : setActivePage(activePage - 1)
+                }
+              />
+              {pageItems}
+              <Pagination.Next
+                onClick={() =>
+                  activePage === pageItems.length
+                    ? setActivePage(1)
+                    : setActivePage(activePage + 1)
+                }
+              />
+            </Pagination>
           </Container>
         </Container>
       </>

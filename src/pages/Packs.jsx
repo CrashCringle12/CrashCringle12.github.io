@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 // State
 import { useGetUsersQuery } from "../app/apiSlice";
+// Router
+import { useLocation } from "react-router-dom";
+import { scroller } from "react-scroll";
 // Components
 import Hero from "../components/Hero";
 import Philosophy from "../components/Philosophy";
@@ -24,7 +27,7 @@ const fetchChartsData = async () => {
 const Packs = () => {
   const { data: userData } = useGetUsersQuery();
   const [charts, setCharts] = React.useState(chartsData); // Use imported JSON data
-
+  const location = useLocation();
   useEffect(() => {
     const loadChartsData = async () => {
       const data = await fetchChartsData();
@@ -37,6 +40,19 @@ const Packs = () => {
   useEffect(() => {
     updateTitle(`${userData.name} | Packs`);
   }, [userData]);
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const scrollTo = query.get("scrollTo");
+
+    if (scrollTo) {
+      scroller.scrollTo(scrollTo, {
+        duration: 800,
+        delay: 0,
+        smooth: "easeInOutQuart",
+      });
+    }
+  }, [location]);
 
   const getFilteredSongs = (packName) => {
     return charts.filter(chart => chart.pack === packName);

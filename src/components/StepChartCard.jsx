@@ -1,8 +1,9 @@
 import React from "react";
 // Styles
 import styled from "styled-components";
-// State
-import PropTypes from "prop-types";
+// Router
+import { useNavigate } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 // Icons
 import { Icon } from "@iconify/react";
 // Images
@@ -11,7 +12,7 @@ import GH from "../images/GH.svg";
 import { Card } from "react-bootstrap";
 
 // #region styled-components
-const StyledCard = styled.div`
+const StyledCardComponent = styled.div`
   .card {
     color: ${({ theme }) => theme.color};
     background: ${({ theme }) => (theme.name === "light" ? "" : "#797B7B")};
@@ -20,69 +21,118 @@ const StyledCard = styled.div`
         ? "0 3px 10px rgb(0 0 0 / 0.2)"
         : "0 3px 10px rgb(255 255 255 / 0.2)"};
 
-    .card-link {
-      text-decoration: none;
-      font-size: 1.5rem;
-      color: ${({ theme }) => theme.color};
-
-      &:hover {
-        color: var(--primary);
-      }
-    }
-
     .card-footer {
       border-top: var(--border);
       background: ${({ theme }) => (theme.name === "light" ? "" : "#404040")};
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: ${({ theme }) => theme.color};
+        color: var(--primary);
+
+        .card-link {
+          color: var(--primary);
+        }
+      }
+
+      .card-link {
+        text-decoration: none;
+        font-size: 1.5rem;
+        color: ${({ theme }) => theme.color};
+      }
+    }
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: ${({ theme }) => theme.primary};
+    margin-bottom: 5px; /* Larger space after subtitle */
+  }
+
+  .pack-name {
+    font-size: 1rem;
+    color: ${({ theme }) => theme.secondary};
+    margin-top: 10px;
+    margin-bottom: 2px; /* Larger space after subtitle */
+  }
+  .subtitle {
+    font-size: 1.1rem; /* Smaller than title */
+    color: ${({ theme }) => theme.color};
+    margin-bottom: 5px; /* Larger space after subtitle */
+  }
+  .artist {
+    font-size: 0.9rem; /* Small text */
+    color: ${({ theme }) => theme.secondary};
+    font-style: italic;
+    margin-bottom: 20px; /* Larger space after artist */
+  }
+  .view-vid {
+    font-size: 1.3rem;
+    color: ${({ theme }) => theme.secondary};
+    margin-top: 10px;
+    text-decoration: none; // Remove underline
+    &:link,
+    &:visited {
+      color: ${({ theme }) => theme.color}; // Ensure the link color is white
+    }
+
+    &:hover,
+    &:active {
+      color: var(--primary); // Change color on hover/active
     }
   }
 `;
 // #endregion
 
 // #region component
-const propTypes = {
-  video: PropTypes.string,
-  description: PropTypes.string,
-  image: PropTypes.string, // Changed to string for URL or path
-  name: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
-  pack: PropTypes.string,
-  url: PropTypes.string.isRequired,
-};
-
-const StepChartCard = ({ video, description, image, name, subtitle, pack, url }) => {
+const StyledCard = ({ image, name, subtitle, artist, description, url, video, pack }) => {
   const imagePath = image ? `${process.env.PUBLIC_URL}/images/charts/${image}` : GH; // Use absolute path
+  const navigate = useNavigate();
+
+  const handleDownloadClick = () => {
+    navigate(`/Packs?scrollTo=${pack.replace("Cringle ", "")}`);
+  };
+
+  // Debugging: Log the image path to the console
+  console.log(`Loading image for ${name}: ${imagePath}`);
+
   return (
-    <StyledCard>
+    <StyledCardComponent>
       <Card>
         <Card.Img
           variant="top"
           src={imagePath} // Use the full path to the image
-          alt={name}
+          alt={subtitle}
           className="mx-auto"
+          onError={(e) => {
+            console.error(`Failed to load image for ${name}: ${imagePath}`);
+            e.target.src = GH; // Fallback to default image
+          }}
         />
         <Card.Body className="overflow-auto text-center">
-          <Card.Title>{name} - {subtitle}</Card.Title>
-          <Card.Text>{description}</Card.Text>
-          {pack && <Card.Text className="text-muted">Pack: {pack}</Card.Text>}
-          {video ? (
-            <Card.Link href={video}>
+          <Card.Title className="card-title">{name}</Card.Title>
+          {subtitle && <Card.Text className="subtitle">{subtitle}</Card.Text>}
+          {artist && <Card.Text className="artist">By: {artist}</Card.Text>}
+          {pack && <Card.Text className="pack-name">Pack: {pack}</Card.Text>}
+          {video !== "" && video !== null ? (
+            <Card.Link className="view-vid" href={video}>
               {"Watch Video "}
               <Icon icon="fa-brands:youtube" />
             </Card.Link>
           ) : null}
         </Card.Body>
-        <Card.Footer className="text-center">
-          <Card.Link href={url}>
+        <Card.Footer className="text-center" onClick={handleDownloadClick}>
+          <span className="card-link">
             {"Download Pack "}
             <Icon icon="fa-solid:download" />
-          </Card.Link>
+          </span>
         </Card.Footer>
       </Card>
-    </StyledCard>
+    </StyledCardComponent>
   );
 };
-
-StepChartCard.propTypes = propTypes;
 // #endregion
 
-export default StepChartCard;
+export default StyledCard;
