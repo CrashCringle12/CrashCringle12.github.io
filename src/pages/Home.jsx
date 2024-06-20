@@ -4,8 +4,8 @@ import { useGetUsersQuery } from "../app/apiSlice";
 // Components
 import Hero from "../components/Hero";
 import AboutMe from "../components/AboutMe";
-import Skills from "../components/Skills";
-import Projects from "../components/Projects";
+import Videos from "../components/Videos";
+import StepCharts from "../components/StepCharts";
 import Contact from "../components/Contact";
 import BackToTop from "../components/BackToTop";
 // Config
@@ -30,8 +30,8 @@ const Home = () => {
           bio={userData.bio}
           moreInfo={moreInfo}
         />
-        <Skills />
-        <Projects filteredProjects={filteredProjects} />
+        <Videos />
+        <StepCharts filteredProjects={filteredProjects} />
         <Contact />
       </main>
       <BackToTop />

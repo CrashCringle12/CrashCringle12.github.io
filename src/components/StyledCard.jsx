@@ -37,29 +37,39 @@ const StyledCardComponent = styled.div`
 // #endregion
 
 // #region component
-const StyledCard = ({ image, name, description, url, demo }) => {
+const StyledCard = ({ image, name, subtitle, description, url, video, pack }) => {
+  const imagePath = image ? `${process.env.PUBLIC_URL}/images/charts/${image}` : GH; // Use absolute path
+
+  // Debugging: Log the image path to the console
+  console.log(`Loading image for ${name}: ${imagePath}`);
+
   return (
     <StyledCardComponent>
       <Card>
         <Card.Img
           variant="top"
-          src={image ? image : GH}
-          alt={name}
+          src={imagePath} // Use the full path to the image
+          alt={subtitle}
           className="mx-auto"
+          onError={(e) => {
+            console.error(`Failed to load image for ${name}: ${imagePath}`);
+            e.target.src = GH; // Fallback to default image
+          }}
         />
         <Card.Body className="overflow-auto text-center">
-          <Card.Title>{name}</Card.Title>
+          <Card.Title>{name} - {subtitle}</Card.Title>
           <Card.Text>{description}</Card.Text>
-          {demo !== "" && demo !== null ? (
-            <Card.Link href={demo}>
-              {"Live Demo "}
+          {pack && <Card.Text className="text-muted">{pack}</Card.Text>}
+          {video !== "" && video !== null ? (
+            <Card.Link href={video}>
+              {"View Video "}
               <Icon icon="icon-park-outline:code-computer" />
             </Card.Link>
           ) : null}
         </Card.Body>
         <Card.Footer className="text-center">
           <Card.Link href={url}>
-            {"View on GitHub "}
+            {"Download Pack "}
             <Icon icon="icomoon-free:github" />
           </Card.Link>
         </Card.Footer>

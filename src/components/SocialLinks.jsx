@@ -41,6 +41,7 @@ const SocialLinks = () => {
       {isSuccess &&
         socialsData.map((element, index) => {
           let icon;
+          console.log(element.provider);
           switch (element.provider) {
             case "linkedin":
               icon = <Icon icon="fa-brands:linkedin" />;
@@ -57,7 +58,15 @@ const SocialLinks = () => {
             case "tiktok":
               icon = <Icon icon="fa-brands:tiktok" />;
               break;
-
+            case "youtube":
+                icon = <Icon icon="fa-brands:youtube" />;
+                break;
+            case "discord":
+                icon = <Icon icon="fa-brands:discord" />;
+                break;
+            case "twitch":
+                icon = <Icon icon="fa-brands:twitch" />;
+                break;
             default:
               icon = <Icon icon="ph:link-bold" />;
               break;
@@ -79,7 +88,7 @@ const SocialLinks = () => {
           aria-label="External link"
           className="link-icons"
         >
-          {Blog ? Blog : <Icon icon="ph:link-bold" />}
+          {Blog ? Blog : <Icon icon="fa-brands:discord" />}
         </a>
       )}
     </StyledSocialLinks>

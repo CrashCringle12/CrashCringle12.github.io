@@ -16,21 +16,62 @@ import ThemeToggle from "./ThemeToggle";
 const navLinks = {
   routes: [
     { id: "1R", name: "Home", route: "/" },
-    { id: "2R", name: "All Projects", route: "/All-Projects" },
+    { id: "2R", name: "Chart Search", route: "/All-StepCharts" },
+    { id: "3R", name: "Packs", route: "/Packs" },
   ],
   to: [
     { id: "1T", name: "Home", to: "Home" },
     { id: "2T", name: "About Me", to: "About" },
-    { id: "3T", name: "Skills", to: "Skills" },
-    { id: "4T", name: "Projects", to: "Projects" },
-    { id: "5T", name: "Contact", to: "Contact" },
+    { id: "3T", name: "Videos", to: "Videos" },
+    { id: "4T", name: "StepCharts", to: "StepCharts" },
+    { id: "5T", name: "Minecraft", to: "Minecraft" },
+    { id: "6T", name: "Contact", to: "Contact" },
   ],
+  packs: [
+    { id: "1P", name: "Home", to: "/" },
+    { id: "2P", name: "Philosophy Statement", to: "Philosophy" },
+    { id: "3P", name: "Captivation", to: "Captivation" },
+    { id: "4P", name: "Hollow", to: "Hollow" },
+    { id: "5P", name: "Odyssey", to: "Odyssey" },
+    { id: "6P", name: "Desolation", to: "Desolation" },
+    { id: "7P", name: "Asylum", to: "Asylum" },
+    { id: "8P", name: "Isle", to: "Isle" },
+    { id: "9P", name: "Haven", to: "Haven" },
+    { id: "10P", name: "Paradise", to: "Paradise" },
+  ]
 };
 // #endregion
 
 // #region styled-components
 const FixedNavSpacer = styled.div`
   height: var(--nav-height);
+`;
+
+const StyledNavItem = styled(Nav.Item)`
+  .nav-link {
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    color: ${({ theme }) => (theme.name === "light" ? "#45413C" : "#F5F2E8")};
+    background-color: ${({ theme }) => (theme.name === "light" ? "#fdfdfd" : "#2c2f33")};
+    border: ${({ theme }) => (theme.name === "light" ? "1px solid #f1f1f1" : "1px solid #2c2f33")};
+
+    &.active {
+      background-color: ${({ theme }) => (theme.name === "light" ? "#ececec" : "#4a4e52")};
+    }
+
+    &:hover {
+      background-color: ${({ theme }) => (theme.name === "light" ? "#e1e1e1" : "#3d4145")};
+    }
+  }
+`;
+
+const Separator = styled.div`
+  height: 2rem;
+  width: 1px;
+  background-color: ${({ theme }) => (theme.name === "light" ? "#dee2e6" : "#45413C")};
+  margin: auto 1rem;
 `;
 // #endregion
 
@@ -74,10 +115,20 @@ const NavBar = ({ Logo }) => {
           />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav navbarScroll className="me-auto">
-              {pathname === "/"
-                ? navLinks.to.map((el) => {
-                    return (
-                      <Nav.Item key={el.id}>
+              {pathname === "/Packs"
+                ? navLinks.packs.map((el, index) => (
+                    <React.Fragment key={el.id}>
+                      <StyledNavItem>
+                     {el.name === "Home" && <Link
+                        to={el.to}
+                        className={
+                          pathname === el.route ? "nav-link active" : "nav-link"
+                        }
+                        onClick={closeExpanded}
+                      >
+                        {el.name}
+                      </Link>}
+                      {el.name !== "Home" &&
                         <ScrollLink
                           to={el.to}
                           spy={true}
@@ -86,27 +137,38 @@ const NavBar = ({ Logo }) => {
                           onClick={closeExpanded}
                         >
                           {el.name}
-                        </ScrollLink>
-                      </Nav.Item>
-                    );
-                  })
-                : navLinks.routes.map((el) => {
-                    return (
-                      <Nav.Item key={el.id}>
-                        <Link
-                          to={el.route}
-                          className={
-                            pathname === el.route
-                              ? "nav-link active"
-                              : "nav-link"
-                          }
-                          onClick={closeExpanded}
-                        >
-                          {el.name}
-                        </Link>
-                      </Nav.Item>
-                    );
-                  })}
+                        </ScrollLink>}
+                      </StyledNavItem>
+                      {el.name === "Philosophy Statement" && <Separator />}
+                    </React.Fragment>
+                  ))
+                : pathname === "/"
+                ? navLinks.to.map((el) => (
+                    <StyledNavItem key={el.id}>
+                      <ScrollLink
+                        to={el.to}
+                        spy={true}
+                        activeClass="active"
+                        className="nav-link"
+                        onClick={closeExpanded}
+                      >
+                        {el.name}
+                      </ScrollLink>
+                    </StyledNavItem>
+                  ))
+                : navLinks.routes.map((el) => (
+                    <StyledNavItem key={el.id}>
+                      <Link
+                        to={el.route}
+                        className={
+                          pathname === el.route ? "nav-link active" : "nav-link"
+                        }
+                        onClick={closeExpanded}
+                      >
+                        {el.name}
+                      </Link>
+                    </StyledNavItem>
+                  ))}
             </Nav>
             <Nav>
               <ThemeToggle />

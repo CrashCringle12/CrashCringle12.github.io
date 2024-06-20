@@ -15,7 +15,8 @@ import PropTypes from "prop-types";
 import { HashRouter, Routes, Route } from "react-router-dom";
 // Pages
 import Home from "./pages/Home";
-import AllProjects from "./pages/AllProjects";
+import AllStepCharts from "./pages/AllStepCharts";
+import Packs from "./pages/Packs";
 import NotFound from "./pages/NotFound";
 // Components
 import { ErrorBoundary } from "react-error-boundary";
@@ -48,8 +49,8 @@ const themes = {
 
 // #region component
 const propTypes = {
-  filteredProjects: PropTypes.arrayOf(PropTypes.string),
-  projectCardImages: PropTypes.arrayOf(
+  filteredStepCharts: PropTypes.arrayOf(PropTypes.string),
+  stepchartCardImages: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       image: PropTypes.node.isRequired,
@@ -149,7 +150,8 @@ const App = ({ projectCardImages, filteredProjects }) => {
         </Element>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/All-Projects" element={<AllProjects />} />
+          <Route path="/All-StepCharts" element={<AllStepCharts />} />
+          <Route path="/Packs" element={<Packs />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
