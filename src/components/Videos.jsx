@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Element } from 'react-scroll';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import Title from './Title';
 import { fetchYouTubeVideos } from '../youtubeService';
 import { useAppContext } from '../appContext';
@@ -57,7 +57,6 @@ const Videos = () => {
               </Col>
             ))}
           </Row>
-
         </Container>
       </section>
     </Element>
