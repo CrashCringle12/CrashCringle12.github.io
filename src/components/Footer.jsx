@@ -8,7 +8,6 @@ import SocialLinks from "./SocialLinks";
 const StyledFooter = styled.footer`
   height: calc(var(--nav-height) + 1rem);
   background: var(--primary);
-
   a {
     color: #45413c;
 

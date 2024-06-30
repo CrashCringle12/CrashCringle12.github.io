@@ -14,7 +14,7 @@ const philosophyContent = `
     <br /><br />
     There's a good amount of diversity in the charts. There's some mod heavy charts, stamina heavy, meme heavy, freestyle heavy, tech heavy, etc etc. Just really depends on what you pick I suppose. I have no intentions of fitting my charts to a specific meta or rhetoric. 
     <br /><br />
-    There is no overall charting theme to any of these packs with the exception of Cringle Desolation. The reason a chart is in one pack and not the other is because of...well \"color\". Each song kinda screams a certain color or vibe to me and that plays a part in what pack I put it in. That kind of implies these packs are living sorta? Kinda...Once a pack hits 20 songs it's very unlikely I add anything to it or if a significant amount of time has passed since I created it. Idk I'm weird.
+    There is no overall charting theme really to any of these packs with the exception of Cringle Desolation. The reason a chart is in one pack and not the other is because of...well \"color\". Each song kinda screams a certain color or vibe to me and that plays a part in what pack I put it in. That kind of implies these packs are living sorta? Kinda...Once a pack hits 20 songs it's very unlikely I add anything to it or if a significant amount of time has passed since I created it. Idk I'm weird.
     <br /> If you encounter any issues or find a mistake you think I made please feel free to reach out to me on discord. I am very very far from perfect so I'm sure something will come up.
     <br /><br /><br /><br /> tl;dr If VisualFX, memes, spins, wordle, surprise couples, or lack of canon-roundsteps upset you, uh sorry in advance. Check the Spoilers for context on the charts
     </p>

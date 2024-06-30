@@ -37,7 +37,7 @@ export { HeroDark as Dark };
 export const moreInfo =
   "Here to spread joy one block at a time. Above is currently copied from github, Most descriptions will be edited and changed as they're placeholders rn or rough drafts.";
 
-export const philosophy = "";
+                                                                                                                                                                                                                                                                                                                                                                                                                              export const philosophy = "";
 /* Projects
  ************************************************************** 
   List the repo names (string - "your-repo-name") you want to include (they will be sorted alphabetically). If empty, only the first 3 will be included.

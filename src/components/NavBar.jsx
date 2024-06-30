@@ -17,28 +17,33 @@ const navLinks = {
   routes: [
     { id: "1R", name: "Home", route: "/" },
     { id: "2R", name: "Chart Search", route: "/All-StepCharts" },
-    { id: "3R", name: "Packs", route: "/Packs" },
+    { id: "3R", name: "My Packs", route: "/Packs" },
+    { id: "4R", name: "Other Packs", route: "/SpecialPacks" },
+    { id: "5R", name: "Vids", route: "/Vids" },
   ],
   to: [
     { id: "1T", name: "Home", to: "Home" },
     { id: "2T", name: "About Me", to: "About" },
-    { id: "3T", name: "Videos", to: "Videos" },
+    { id: "3T", name: "Youtube", to: "Videos" },
     { id: "4T", name: "StepCharts", to: "StepCharts" },
-    { id: "5T", name: "Minecraft", to: "Minecraft" },
-    { id: "6T", name: "Contact", to: "Contact" },
+    { id: "5T", name: "Contact", to: "Contact" },
+    { id: "6T", name: "ITG", to: "/All-StepCharts" },
+    { id: "7T", name: "Minecraft", to: "/Minecraft" },
+    { id: "8T", name: "Portfolio", to: "/Portfolio" },
   ],
   packs: [
     { id: "1P", name: "Home", to: "/" },
-    { id: "2P", name: "Chart Search", to: "/All-StepCharts" },
-    { id: "3P", name: "Philosophy Statement", to: "Philosophy" },
-    { id: "4P", name: "Captivation", to: "Captivation" },
-    { id: "5P", name: "Hollow", to: "Hollow" },
-    { id: "6P", name: "Odyssey", to: "Odyssey" },
-    { id: "7P", name: "Desolation", to: "Desolation" },
-    { id: "8P", name: "Asylum", to: "Asylum" },
-    { id: "9P", name: "Isle", to: "Isle" },
-    { id: "10P", name: "Haven", to: "Haven" },
-    { id: "11P", name: "Paradise", to: "Paradise" },
+    { id: "2P", name: "ITG", to: "/All-StepCharts" },
+    { id: "3P", name: "Chart Search", to: "/All-StepCharts" },
+    { id: "4P", name: "Philosophy", to: "Philosophy" },
+    { id: "5P", name: "Captivation", to: "Captivation" },
+    { id: "6P", name: "Hollow", to: "Hollow" },
+    { id: "7P", name: "Odyssey", to: "Odyssey" },
+    { id: "8P", name: "Desolation", to: "Desolation" },
+    { id: "9P", name: "Asylum", to: "Asylum" },
+    { id: "10P", name: "Isle", to: "Isle" },
+    { id: "11P", name: "Haven", to: "Haven" },
+    { id: "12P", name: "Paradise", to: "Paradise" },
   ]
 };
 // #endregion
@@ -119,8 +124,9 @@ const NavBar = ({ Logo }) => {
               {pathname === "/Packs"
                 ? navLinks.packs.map((el, index) => (
                     <React.Fragment key={el.id}>
+                      {el.name === "Philosophy" && <Separator />}
                       <StyledNavItem>
-                     {(el.name === "Home" || el.name === "Chart Search") && <Link
+                     {(el.to.startsWith("/")) && <Link
                         to={el.to}
                         className={
                           pathname === el.route ? "nav-link active" : "nav-link"
@@ -129,7 +135,7 @@ const NavBar = ({ Logo }) => {
                       >
                         {el.name}
                       </Link>}
-                      {(el.name !== "Home" && el.name !== "Chart Search") &&
+                      {(!el.to.startsWith("/")) &&
                         <ScrollLink
                           to={el.to}
                           spy={true}
@@ -140,12 +146,23 @@ const NavBar = ({ Logo }) => {
                           {el.name}
                         </ScrollLink>}
                       </StyledNavItem>
-                      {el.name === "Philosophy Statement" && <Separator />}
+                      {el.name === "Philosophy" && <Separator />}
                     </React.Fragment>
                   ))
                 : pathname === "/"
                 ? navLinks.to.map((el) => (
+                  <React.Fragment key={el.id}>
                     <StyledNavItem key={el.id}>
+                    {(el.to.startsWith("/")) && <Link
+                        to={el.to}
+                        className={
+                          pathname === el.route ? "nav-link active" : "nav-link"
+                        }
+                        onClick={closeExpanded}
+                      >
+                        {el.name}
+                      </Link>}
+                      {(!el.to.startsWith("/")) &&
                       <ScrollLink
                         to={el.to}
                         spy={true}
@@ -154,8 +171,10 @@ const NavBar = ({ Logo }) => {
                         onClick={closeExpanded}
                       >
                         {el.name}
-                      </ScrollLink>
+                      </ScrollLink>}
                     </StyledNavItem>
+                    {(el.name === "Contact") && <Separator />}
+                    </React.Fragment>
                   ))
                 : navLinks.routes.map((el) => (
                     <StyledNavItem key={el.id}>

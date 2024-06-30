@@ -47,7 +47,7 @@ const AllCharts = () => {
   let content;
 
   React.useEffect(() => {
-    updateTitle(`${userData.name} | All Charts`);
+    updateTitle(`${userData.name} | ITG`);
   }, [userData]);
 
   React.useEffect(() => {
@@ -128,7 +128,7 @@ const AllCharts = () => {
     content = (
       <>
         <Container className="d-flex justify-content-center">
-          <Title size={"h2"} text={"All Charts"} />
+          <Title size={"h2"} text={"Search Cringle Charts"} />
         </Container>
         <Container>
           <InputGroup className="mx-auto mb-3">

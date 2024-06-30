@@ -15,8 +15,10 @@ const VideoWrapper = styled.div`
     height: 315px;
   }
 `;
-// #endregion
 
+
+
+// #endregion
 // #region component
 const Videos = () => {
   const { theme } = useAppContext();
@@ -54,6 +56,7 @@ const Videos = () => {
                   ></iframe>
                   <p>{video.snippet.title}</p>
                 </VideoWrapper>
+                
               </Col>
             ))}
           </Row>

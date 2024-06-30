@@ -15,8 +15,11 @@ import PropTypes from "prop-types";
 import { HashRouter, Routes, Route } from "react-router-dom";
 // Pages
 import Home from "./pages/Home";
+import Minecraft from "./pages/Minecraft";
 import AllStepCharts from "./pages/AllStepCharts";
 import Packs from "./pages/Packs";
+import SpecialPacks from "./pages/SpecialPacks";
+import Vids from "./pages/Vids";
 import NotFound from "./pages/NotFound";
 // Components
 import { ErrorBoundary } from "react-error-boundary";
@@ -37,7 +40,7 @@ const themes = {
   light: {
     name: "light",
     color: "#45413C",
-    background: "#F5F2E8",
+    background: "#DFE5EB",
   },
   dark: {
     name: "dark",
@@ -152,6 +155,9 @@ const App = ({ projectCardImages, filteredProjects }) => {
           <Route exact path="/" element={<Home />} />
           <Route path="/All-StepCharts" element={<AllStepCharts />} />
           <Route path="/Packs" element={<Packs />} />
+          <Route path="/SpecialPacks" element={<SpecialPacks />} />
+          <Route path="/Vids" element={<Vids />} />
+          <Route path="/Minecraft" element={<Minecraft/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

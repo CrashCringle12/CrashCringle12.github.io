@@ -87,14 +87,19 @@ const StyledCardComponent = styled.div`
 // #endregion
 
 // #region component
-const StyledCard = ({ image, name, subtitle, artist, description, url, video, pack }) => {
-  const imagePath = image ? `${process.env.PUBLIC_URL}/images/charts/${image}` : GH; // Use absolute path
+const StyledCard = ({ image, name, subtitle, artist, description, url, video, pack, other }) => {
+  // If other is true, /imges/other/ will be prepended to the image path
+  const imagePath = image ? `${process.env.PUBLIC_URL}/images/${other ? "othercharts" : "charts"}/${image}` : GH; // Use absolute path
   const [imgSrc, setImgSrc] = useState(imagePath);
   const [retry, setRetry] = useState(0);
   const navigate = useNavigate();
 
   const handleDownloadClick = () => {
-    navigate(`/Packs?scrollTo=${pack.replace("Cringle ", "")}`);
+    // If other use SpecialPacks
+    if (other) {
+      navigate(`/SpecialPacks?scrollTo=${pack.replace("Cringle ", "")}`);
+    } else
+      navigate(`/Packs?scrollTo=${pack.replace("Cringle ", "")}`);
   };
 
   const handleImageError = () => {
