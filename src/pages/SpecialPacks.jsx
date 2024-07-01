@@ -69,6 +69,7 @@ const StyledPageComponent = styled.div`
           moreInfo="Pollock Commons, 215 Bigler Rd, University Park PA 16802"
           date="January 27th 2024"
           songs={getFilteredSongs("R.I.G.H.T.S 2")}
+          downloadLink="https://drive.google.com/file/d/1oaesA4O9_0mLLtn1HP_bb8YzDcSrY7e5/view?usp=drive_link"
         />
         <ProjectPageTemplate
           title="R.I.G.H.T.S"
@@ -78,6 +79,7 @@ const StyledPageComponent = styled.div`
           moreInfo="Pollock Commons, 215 Bigler Rd, University Park PA 16802"
           date="January 14th 2023"
           songs={getFilteredSongs("R.I.G.H.T.S")}
+          downloadLink="https://drive.google.com/file/d/1q7MVjzLmMbRKF_0hzWoo1s3z6XucrkOi/view?usp=sharing"
         />
         <ProjectPageTemplate
           title="Squeaky Beds and Leaky Faucets (Nightly Beta)"
@@ -88,6 +90,8 @@ const StyledPageComponent = styled.div`
           date="TBD"
           status="Ended"
           songs={getFilteredSongs("Squeaky Beds and Leaky Faucets (Nightly Beta)")}
+          downloadLink="https://www.dropbox.com/s/vukxtgbcydfan5h/Squeaky%20Beds%20and%20Leaky%20Faucets%20(14.02.2023%20Beta).zip?dl=0"
+          spoilerFile="Joke Explainer 6000.txt"
         />
         <ProjectPageTemplate
           title="UPSMH Online"
@@ -96,8 +100,9 @@ const StyledPageComponent = styled.div`
           bio="Organised by teejusb & bkirz"
           moreInfo="Additional information about the UPSMH Online pack."
           date="July 31st-Aug 1st 2021"
-          status="Completed"
+          status="Ended"
           songs={getFilteredSongs("UPSMH Online")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/EU9d0bJaWzVPsJjuPcGtWaYBCDYJ4xf8LNgVZ-EL_F01vA?e=xCIKae"
         />
         <ProjectPageTemplate
           title="UPS 5"
@@ -106,8 +111,9 @@ const StyledPageComponent = styled.div`
           bio="The fifth and final iterations of the U.P.S series."
           moreInfo="Pollock Commons, 215 Bigler Rd, University Park PA 16802"
           date="2020"
-          status="Completed"
+          status="Ended"
           songs={getFilteredSongs("UPS 5")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/EdaiWvHviflBttJjUl_RdXcBzWiVgYSPjYstzIgLENRS8Q?e=YBBSNr"
         />
         <ProjectPageTemplate
           title="UPS 4"
@@ -116,8 +122,9 @@ const StyledPageComponent = styled.div`
           bio="Organised by teejusb"
           moreInfo="Pollock Commons, 215 Bigler Rd, University Park PA 16802"
           date="2019"
-          status="Completed"
+          status="Ended"
           songs={getFilteredSongs("UPS 4")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/EXiQK1WeRaBOggQLf5UhJ5EB1b_6LFqHzKLyyLm8ZsIQHg?e=RlldPO"
         />
         <ProjectPageTemplate
           title="UPS 3"
@@ -126,8 +133,9 @@ const StyledPageComponent = styled.div`
           bio="Organised by teejusb"
           moreInfo="Pollock Commons, 215 Bigler Rd, University Park PA 16802"
           date="2018"
-          status="Completed"
+          status="Ended"
           songs={getFilteredSongs("UPS 3")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/EWqZwQd5VCpKpkFtH9oFe-MBO3J3Lh1RcXPkdh3mxlK6Nw?e=rOPQ5Q"
         />
         <ProjectPageTemplate
           title="UPS 2"
@@ -136,8 +144,9 @@ const StyledPageComponent = styled.div`
           bio="Organised by teejusb"
           moreInfo="Pollock Commons, 215 Bigler Rd, University Park PA 16802"
           date="2017"
-          status="Completed"
+          status="Ended"
           songs={getFilteredSongs("UPS 2")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/EejzmNt6ggZNh6lmbZetTAAB30eBkn6ioE6cgaRz-4MEZQ?e=dQza7s"
         />
         <ProjectPageTemplate
           title="UPS"
@@ -146,8 +155,9 @@ const StyledPageComponent = styled.div`
           bio="Organised by teejusb"
           moreInfo="Findlay Commons, University Park PA 16802"
           date="2016"
-          status="Completed"
+          status="Ended"
           songs={getFilteredSongs("UPS")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/Ee6k7Yl79TpMo4MWcXBK-S8BXAZfocRzyon8MR0reB6NPg?e=0gu59A"
         />
         <ProjectPageTemplate
           title="UPSRT2.5 - Locked Away"
@@ -166,8 +176,9 @@ const StyledPageComponent = styled.div`
           bio="Bio information for UPSRT pack."
           moreInfo="See UPSRT Credits"
           date="2016"
-          status="Completed"
+          status="Ended"
           songs={getFilteredSongs("UPSRT")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/EdaiWvHviflBttJjUl_RdXcBzWiVgYSPjYstzIgLENRS8Q?e=YBBSNr"
         />
         <ProjectPageTemplate
           title="D.O.W.N.S 5"
@@ -178,6 +189,7 @@ const StyledPageComponent = styled.div`
           date="January 3rd-4th, 2015"
           status="Ended"
           songs={getFilteredSongs("D.O.W.N.S 5")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/EYiM_lfMp3xJkM7n_6dDz-EBqkzb6U17YTKWhm9seKaXvw?e=Xjh2Kf"
         />
         <ProjectPageTemplate
           title="D.O.W.N.S 4"
@@ -186,8 +198,9 @@ const StyledPageComponent = styled.div`
           bio="Organised by Zetorux"
           moreInfo="Family Fun Center, East Harrisburg Mall, PA (3501 Paxton St, Harrisburg, PA 17111)" 
           date="January 24th-26th, 2014"
-          status="Completed"
+          status="Ended"
           songs={getFilteredSongs("D.O.W.N.S 4")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/EXDQ5cjfrL9FoaZzhKb0X70Bzwju5Me8qSFoh_0Pzi7JXA?e=ER7nTa"
         />
         <ProjectPageTemplate
           title="D.O.W.N.S 3"
@@ -196,8 +209,9 @@ const StyledPageComponent = styled.div`
           bio="D.O.W.N.S. 3 Tournament Pack"
           moreInfo="Family Fun Center, East Harrisburg Mall, PA (3501 Paxton St, Harrisburg, PA 17111)"
           date="January 26th, 2013"
-          status="Completed"
+          status="Ended"
           songs={getFilteredSongs("D.O.W.N.S 3")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/EVNEt0H-LkNBotWNNf_ioHQB2QMUeu9suS-O6P0VkM6-ug?e=mLzxlu"
         />
         <ProjectPageTemplate
           title="D.O.W.N.S 2"
@@ -206,8 +220,9 @@ const StyledPageComponent = styled.div`
           bio="Organised by Zetorux"
           moreInfo="Adventure Park USA (New Market, MD)"
           date="January 14th, 2012"
-          status="Completed"
+          status="Ended"
           songs={getFilteredSongs("D.O.W.N.S 2")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/ETLMrCpMv79Mt7UiorUz0cMBBXqSzHLwuhHlBNm_8YWuBA?e=HwHHFU"
         />
         <ProjectPageTemplate
           title="D.O.W.N.S 1"
@@ -216,8 +231,9 @@ const StyledPageComponent = styled.div`
           bio="Organised by Zetorux"
           moreInfo="Adventure Park USA (New Market, MD)"
           date="March 5th, 2011"
-          status="Completed"
+          status="Ended"
           songs={getFilteredSongs("D.O.W.N.S 1")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/EekZVSUN8kdPuoVsXSoFDEgBZPXmShMEVW3pg2qOpET-cA?e=FbYypJ"
         />
         <ProjectPageTemplate
           title="J.U.M.P.S"
@@ -228,6 +244,7 @@ const StyledPageComponent = styled.div`
           date="January 8th 2020"
           status="Ended"
           songs={getFilteredSongs("J.U.M.P.S")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/ETjDg5e4XWxGn2rKEgLYKXsBDVD71wzgg1PSEIFBstGDkA?e=4Zhk3k"
         />
         <ProjectPageTemplate
           title="J.U.M.P.S 2"
@@ -238,6 +255,7 @@ const StyledPageComponent = styled.div`
           date="November 12th 2020"
           status="Ended"
           songs={getFilteredSongs("J.U.M.P.S 2")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/EfL0ZElj7rJCrEnYNEztX_gBijgRYtYNuvx9OjPTqPlqUA?e=hayiBb"
         />
         <ProjectPageTemplate
           title="J.U.M.P.S 3"
@@ -247,6 +265,7 @@ const StyledPageComponent = styled.div`
           status="Ended"
           date="October 24th 2021"
           songs={getFilteredSongs("J.U.M.P.S 3")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/ESB3jKTJk1VEr0jhFWt1ETcB7cqz6Q5KSCBNQ-vjisrnpw?e=S2bOrs"
         />
         <ProjectPageTemplate
           title="J.U.M.P.S 4"
@@ -257,6 +276,7 @@ const StyledPageComponent = styled.div`
           date="February 26th 2023"
           status="Ended"
           songs={getFilteredSongs("J.U.M.P.S 4")}
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/EfO9jDJ6PMlLqkmFeZqvVuUBXzfX92GYzuM8xkkQ1tesbA?e=b4NGpo"
         />
         <ProjectPageTemplate
           title="Good Reads 1"

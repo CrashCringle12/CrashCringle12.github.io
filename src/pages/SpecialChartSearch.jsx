@@ -45,9 +45,9 @@ const SpecialChartSearch = () => {
   const { data: userData } = useGetUsersQuery();
 
   // Sort the charts data by title
-  const sortedChartsData = chartsData.sort((a, b) => a.name.localeCompare(b.name));
-
-  const [data, setData] = React.useState(sortedChartsData); // Use sorted data
+  // const sortedChartsData = chartsData.sort((a, b) => a.name.localeCompare(b.name));
+  const shuffledStepCharts = chartsData.sort(() => 0.5 - Math.random());
+  const [data, setData] = React.useState(shuffledStepCharts); // Use sorted data
   let content;
 
   React.useEffect(() => {

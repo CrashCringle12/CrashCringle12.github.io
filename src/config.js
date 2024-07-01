@@ -35,7 +35,7 @@ export { HeroDark as Dark };
   Add a second paragraph for the about me section.
 */
 export const moreInfo =
-  "Here to spread joy one block at a time. Above is currently copied from github, Most descriptions will be edited and changed as they're placeholders rn or rough drafts.";
+  "Hey Hey, I'm just a guy who likes to step on arrows and place blocks. I do a bunch of random development for ITG and Minecraft related projects. This site is still a WIP, the ITG section is what I worked on first but I'll fill out the rest soon!";
 
                                                                                                                                                                                                                                                                                                                                                                                                                               export const philosophy = "";
 /* Projects

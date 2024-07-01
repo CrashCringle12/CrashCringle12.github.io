@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import ReactMarkdown from 'react-markdown';
@@ -56,7 +56,9 @@ const propTypes = {
       difficulties: PropTypes.string.isRequired,
     })
   ).isRequired,
-  description: PropTypes.string
+  description: PropTypes.string,
+  downloadLink: PropTypes.string, // Add downloadLink as a prop
+  spoilerFile: PropTypes.string, // Add spoilerFile as a prop
 };
 
 const ProjectPageTemplate = ({
@@ -68,8 +70,21 @@ const ProjectPageTemplate = ({
   date,
   status,
   songs,
-  description
+  description,
+  downloadLink,
+  spoilerFile,
 }) => {
+  const [spoilerContent, setSpoilerContent] = useState("");
+
+  useEffect(() => {
+    if (spoilerFile) {
+      fetch(`${process.env.PUBLIC_URL}/spoilers/${spoilerFile}`)
+        .then((response) => response.text())
+        .then((text) => setSpoilerContent(text))
+        .catch((error) => console.error("Error fetching spoiler file:", error));
+    }
+  }, [spoilerFile]);
+
   return (
     <Element name={title} id={title.replace("Cringle ", "")}>
       <StyledProjectPage className="section">
@@ -79,7 +94,7 @@ const ProjectPageTemplate = ({
           </Container>
           <Row className="align-items-start mt-5">
             <Col md={6}>
-            {bannerVideo ? (
+              {bannerVideo ? (
                 <video className="banner" autoPlay loop muted>
                   <source src={`${process.env.PUBLIC_URL}/${bannerVideo}`} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -123,16 +138,18 @@ const ProjectPageTemplate = ({
                   </tbody>
                 </Table>
               </div>
-              <div className="button-container">
-                <Button variant="primary" href="/path/to/download">
-                  Download Pack
-                </Button>
-              </div>
-              <div className="button-container">
-                <Link to="/spoiler">
-                  <Button variant="secondary">Spoiler Page</Button>
-                </Link>
-              </div>
+              {downloadLink && (
+                <div className="button-container">
+                  <Button variant="primary" href={downloadLink}>
+                    Download Pack
+                  </Button>
+                </div>
+              )}
+              {spoilerContent && (
+                <div className="description mt-3">
+                  <ReactMarkdown>{spoilerContent}</ReactMarkdown>
+                </div>
+              )}
             </Col>
           </Row>
         </Container>
