@@ -103,7 +103,7 @@ const StyledCard = ({ image, name, subtitle, artist, description, url, video, pa
   };
 
   const handleImageError = () => {
-    if (retry < 3) {
+    if (retry < 5) {
       console.log(`Retrying image for ${name}: attempt ${retry + 1}`);
       setRetry(retry + 1);
       setImgSrc(imagePath + `?retry=${retry + 1}`); // Add a query param to force reload

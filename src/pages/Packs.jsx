@@ -17,25 +17,11 @@ import { philosophy } from "../config";
 // Utils
 import { updateTitle } from "../utils";
 
-const fetchChartsData = async () => {
-  const response = await fetch("/path/to/charts.json");
-  const data = await response.json();
-  return data;
-};
-
 // #region component
 const Packs = () => {
   const { data: userData } = useGetUsersQuery();
   const [charts, setCharts] = React.useState(chartsData); // Use imported JSON data
   const location = useLocation();
-  useEffect(() => {
-    const loadChartsData = async () => {
-      const data = await fetchChartsData();
-      setCharts(data);
-    };
-
-    loadChartsData();
-  }, []);
 
   useEffect(() => {
     updateTitle(`${userData.name} | Packs`);

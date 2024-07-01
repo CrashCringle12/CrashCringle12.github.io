@@ -9,7 +9,7 @@ import Title from "./Title";
 
 // #region styled-components
 const StyledProjectPage = styled.section`
-  margin-bottom: -15%;
+  margin-bottom: -12%;
   .banner {
     width: 100%;
     height: auto;
@@ -96,8 +96,8 @@ const ProjectPageTemplate = ({
               </p>
               <p className="description"> {description || `This is a description of the ${title} project. Write your paragraph or so description here. You can add more text to give a detailed overview of the project or any other relevant information that you want to share`}
               </p>
-              {bio && <p className="description"> <ReactMarkdown>{bio}</ReactMarkdown></p>}
-              {moreInfo && <p className="description"><ReactMarkdown>{moreInfo}</ReactMarkdown></p>}
+              {bio && <ReactMarkdown className="description">{bio}</ReactMarkdown>}
+              {moreInfo && <ReactMarkdown className="description">{moreInfo}</ReactMarkdown>}
             </Col>
             <Col md={6} className="d-flex flex-column">
               <h3 className="align-self-start">Songs in this Pack</h3>

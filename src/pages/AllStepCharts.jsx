@@ -197,6 +197,7 @@ const AllCharts = () => {
   return (
     <>
       <main>
+        
         <StyledSection className="d-flex flex-column justify-content-center">
           {content}
         </StyledSection>

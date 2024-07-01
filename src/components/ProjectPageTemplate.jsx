@@ -79,7 +79,7 @@ const ProjectPageTemplate = ({
           </Container>
           <Row className="align-items-start mt-5">
             <Col md={6}>
-            {bannerVideo ? (
+              {bannerVideo ? (
                 <video className="banner" autoPlay loop muted>
                   <source src={`${process.env.PUBLIC_URL}/${bannerVideo}`} type="video/mp4" />
                   Your browser does not support the video tag.
@@ -99,8 +99,8 @@ const ProjectPageTemplate = ({
               </p>
               <p className="description"> {description || `This is a description of the ${title} project. Write your paragraph or so description here. You can add more text to give a detailed overview of the project or any other relevant information that you want to share`}
               </p>
-              {bio && <p className="description"> <ReactMarkdown>{bio}</ReactMarkdown></p>}
-              {moreInfo && <p className="description"><ReactMarkdown>{moreInfo}</ReactMarkdown></p>}
+              {bio && <ReactMarkdown className="description">{bio}</ReactMarkdown>}
+              {moreInfo && <ReactMarkdown className="description">{moreInfo}</ReactMarkdown>}
             </Col>
             <Col md={6} className="d-flex flex-column">
               <h3 className="align-self-start">Songs in this Pack</h3>

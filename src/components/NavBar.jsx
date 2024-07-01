@@ -54,15 +54,16 @@ const FixedNavSpacer = styled.div`
 `;
 
 const StyledNavItem = styled(Nav.Item)`
+
   .nav-link {
     margin: 0 0.5rem;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     transition: background-color 0.3s, color 0.3s;
     color: ${({ theme }) => (theme.name === "light" ? "#45413C" : "#F5F2E8")};
-    background-color: ${({ theme }) => (theme.name === "light" ? "#fdfdfd" : "#2c2f33")};
+    background-color: ${({ theme }) => (theme.name === "light" ? "#CCE6FF" : "#2c2f33")};
     border: ${({ theme }) => (theme.name === "light" ? "1px solid #f1f1f1" : "1px solid #2c2f33")};
-
+    
     &.active {
       background-color: ${({ theme }) => (theme.name === "light" ? "#ececec" : "#4a4e52")};
     }
@@ -80,6 +81,7 @@ const Separator = styled.div`
   margin: auto 1rem;
 `;
 // #endregion
+
 
 // #region component
 const propTypes = {
@@ -129,7 +131,7 @@ const NavBar = ({ Logo }) => {
                      {(el.to.startsWith("/")) && <Link
                         to={el.to}
                         className={
-                          pathname === el.route ? "nav-link active" : "nav-link"
+                          pathname === el.to ? "nav-link active" : "nav-link"
                         }
                         onClick={closeExpanded}
                       >
@@ -156,7 +158,7 @@ const NavBar = ({ Logo }) => {
                     {(el.to.startsWith("/")) && <Link
                         to={el.to}
                         className={
-                          pathname === el.route ? "nav-link active" : "nav-link"
+                          pathname === el.to ? "nav-link active" : "nav-link"
                         }
                         onClick={closeExpanded}
                       >

@@ -31,6 +31,7 @@ import { Element } from "react-scroll";
 import { Container } from "react-bootstrap";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import MobileWarning from "./components/Warning"; // Import MobileWarning
 // Config
 import { navLogo } from "./config";
 
@@ -71,8 +72,8 @@ const App = ({ projectCardImages, filteredProjects }) => {
   const dispatch = useDispatch();
   const { isLoading, isSuccess, isError, error } = useGetUsersQuery();
   const { data: projectsData } = useGetProjectsQuery();
+  const [showWarning, setShowWarning] = React.useState(false);
   let content;
-
   // Set all projects state
   React.useEffect(() => {
     const tempData = [];
@@ -133,11 +134,29 @@ const App = ({ projectCardImages, filteredProjects }) => {
     updateTheme();
   }, [setTheme]);
 
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (e) =>
-      e.matches ? setTheme("dark") : setTheme("light")
-    );
+  // window
+  //   .matchMedia("(prefers-color-scheme: dark)")
+  //   .addEventListener("change", (e) =>
+  //     e.matches ? setTheme("dark") : setTheme("light")
+  //   );
+
+  // Check if mobile and set warning
+  React.useEffect(() => {
+    const checkMobile = () => {
+      if (window.innerWidth < 768) {
+        setShowWarning(true);
+      } else {
+        setShowWarning(false);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
 
   if (isLoading) {
     content = (
@@ -182,6 +201,7 @@ const App = ({ projectCardImages, filteredProjects }) => {
           <ScrollToTop />
           <GlobalStyles />
           {content}
+          <MobileWarning show={showWarning} handleClose={() => setShowWarning(false)} />
         </ThemeProvider>
       </HashRouter>
     </ErrorBoundary>
