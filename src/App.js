@@ -36,7 +36,7 @@ import MobileWarning from "./components/Warning"; // Import MobileWarning
 import { navLogo } from "./config";
 
 // #region constants
-const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+const darkMode = true // window.matchMedia("(prefers-color-scheme: dark)").matches;
 const themes = {
   light: {
     name: "light",

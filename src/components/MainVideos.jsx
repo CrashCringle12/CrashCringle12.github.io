@@ -96,8 +96,9 @@ const Videos = () => {
           <Row className="mt-3 align-items-center">
             <Col xs={12} md={6} className="my-3">
               <EmbeddedVideoWrapper>
+              <embed src="https://pennstateoffice365-my.sharepoint.com/:v:/g/personal/lbc5186_psu_edu/Ebay-c01lNxAjQRHh_pzOVYBcrF9hiMAor8T1vyDgU26XQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=kBDg9L"></embed>
                 <iframe
-                  src="https://pennstateoffice365-my.sharepoint.com/personal/lbc5186_psu_edu/_layouts/15/embed.aspx?UniqueId=fb26d149-3810-4bf3-9006-f8d2b8ec9a02&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create"
+                  src="https://pennstateoffice365-my.sharepoint.com/personal/lbc5186_psu_edu/_layouts/15/embed.aspx?UniqueId=b4087918-7334-4a1d-ae35-2663aded9e02&embed=%7B%22ust%22%3Afalse%2C%22hv%22%3A%22CopyEmbedCode%22%7D&referrer=StreamWebApp&referrerScenario=EmbedDialog.Create"
                   allowFullScreen
                   title="RIGHTS2Day1.mp4"
                 ></iframe>

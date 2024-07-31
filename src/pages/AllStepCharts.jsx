@@ -70,7 +70,7 @@ const AllCharts = () => {
       const endIdx = startIdx + itemsPerPage;
       setFilteredResults(currentData.slice(startIdx, endIdx));
 
-      const visiblePages = 100; // Number of visible page items
+      const visiblePages = 25; // Number of visible page items
       const halfVisible = Math.floor(visiblePages / 2);
 
       const tempPageItems = [];

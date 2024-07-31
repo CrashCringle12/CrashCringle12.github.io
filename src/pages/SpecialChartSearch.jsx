@@ -168,7 +168,7 @@ const SpecialChartSearch = () => {
                     artist={artist}
                     pack={pack}
                     url={html_url}
-                    video={video_url}
+                    video=""
                     other={true}
                   />
                 </Col>

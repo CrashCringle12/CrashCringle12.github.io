@@ -35,7 +35,7 @@ const navLinks = {
     { id: "1P", name: "Home", to: "/" },
     { id: "2P", name: "ITG", to: "/All-StepCharts" },
     { id: "3P", name: "Chart Search", to: "/All-StepCharts" },
-    { id: "4P", name: "Philosophy", to: "Philosophy" },
+    { id: "4P", name: "Foreword", to: "Philosophy" },
     { id: "5P", name: "Captivation", to: "Captivation" },
     { id: "6P", name: "Hollow", to: "Hollow" },
     { id: "7P", name: "Odyssey", to: "Odyssey" },
@@ -126,7 +126,7 @@ const NavBar = ({ Logo }) => {
               {pathname === "/Packs"
                 ? navLinks.packs.map((el, index) => (
                     <React.Fragment key={el.id}>
-                      {el.name === "Philosophy" && <Separator />}
+                      {el.name === "Foreword" && <Separator />}
                       <StyledNavItem>
                      {(el.to.startsWith("/")) && <Link
                         to={el.to}
@@ -148,7 +148,6 @@ const NavBar = ({ Logo }) => {
                           {el.name}
                         </ScrollLink>}
                       </StyledNavItem>
-                      {el.name === "Philosophy" && <Separator />}
                     </React.Fragment>
                   ))
                 : pathname === "/"

@@ -9,7 +9,7 @@ import Title from "./Title";
 
 // #region styled-components
 const StyledProjectPage = styled.section`
-  margin-bottom: -12%;
+  margin-bottom: -10%;
   .banner {
     width: 100%;
     height: auto;
@@ -33,8 +33,20 @@ const StyledProjectPage = styled.section`
     overflow-y: auto; /* Enable vertical scrolling */
   }
   .button-container {
-    margin-top: 20px;
+    margin-top: 10px;
     text-align: center;
+  }
+  .spoiler-container {
+    margin-top: 20px;
+    max-height: 200px; /* Set the maximum height for the spoiler container */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid ${({ theme }) => theme.color};
+    padding: 10px;
+    white-space: pre-wrap; /* Maintain white spaces and new lines */
+    display: none; /* Hidden by default */
+  }
+  .spoiler-container.visible {
+    display: block; /* Show when visible */
   }
 `;
 // #endregion
@@ -75,6 +87,7 @@ const ProjectPageTemplate = ({
   spoilerFile,
 }) => {
   const [spoilerContent, setSpoilerContent] = useState("");
+  const [isSpoilerVisible, setIsSpoilerVisible] = useState(false);
 
   useEffect(() => {
     if (spoilerFile) {
@@ -84,6 +97,10 @@ const ProjectPageTemplate = ({
         .catch((error) => console.error("Error fetching spoiler file:", error));
     }
   }, [spoilerFile]);
+
+  const toggleSpoilerVisibility = () => {
+    setIsSpoilerVisible(!isSpoilerVisible);
+  };
 
   return (
     <Element name={title} id={title.replace("Cringle ", "")}>
@@ -146,9 +163,16 @@ const ProjectPageTemplate = ({
                 </div>
               )}
               {spoilerContent && (
-                <div className="description mt-3">
-                  <ReactMarkdown>{spoilerContent}</ReactMarkdown>
-                </div>
+                <>
+                  <div className="button-container">
+                    <Button variant="secondary" onClick={toggleSpoilerVisibility}>
+                      {isSpoilerVisible ? "Hide Spoiler" : "Show Spoiler"}
+                    </Button>
+                  </div>
+                  <div className={`spoiler-container ${isSpoilerVisible ? 'visible' : ''}`}>
+                    <pre>{spoilerContent}</pre>
+                  </div>
+                </>
               )}
             </Col>
           </Row>
