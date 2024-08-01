@@ -41,7 +41,9 @@ const Packs = () => {
   }, [location]);
 
   const getFilteredSongs = (packName) => {
-    return charts.filter(chart => chart.pack === packName);
+    return charts
+      .filter(chart => chart.pack === packName)
+      .sort((a, b) => a.name.localeCompare(b.name)); // Sort alphabetically by title
   };
 
   return (
@@ -53,6 +55,17 @@ const Packs = () => {
           avatar_url={userData.avatar_url}
           bio={userData.bio}
           philosophy={philosophy}
+        />
+        <ProjectPageTemplate
+          title="Cringle Culmination"
+          bannerImage="CulminationBanner.png"
+          description="This pack is a culmination of my sort of greatest hits from my packs thus far. This serves as a sort of intro into my content and a simple download if you don't want to commit to downloading 6 packs before trying out some of the songs."
+          bio="I tried to grab songs from each of the packs thus far that I felt were representative or were things that people have asked for. I know I've promised to put all these packs up for a while, so this is the next best thing."
+          moreInfo="I think I might release Cringle Culmination II in the future if I have enough additional content."
+          date="2024"
+          status="Completed [Download Available]"
+          downloadLink="https://pennstateoffice365-my.sharepoint.com/:u:/g/personal/lbc5186_psu_edu/EUn8RO0XNt1IjDgSxr1suh0B_SZsUNnARQrm8ck2Le7Adg?e=fid5xO"
+          songs={getFilteredSongs("Cringle Culmination")}
         />
         <ProjectPageTemplate
           title="Cringle Captivation"

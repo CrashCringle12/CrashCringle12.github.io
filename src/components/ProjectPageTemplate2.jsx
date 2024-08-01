@@ -9,7 +9,7 @@ import Title from "./Title";
 
 // #region styled-components
 const StyledProjectPage = styled.section`
-  margin-bottom: -10%;
+  margin-bottom: -12%;
   .banner {
     width: 100%;
     height: auto;

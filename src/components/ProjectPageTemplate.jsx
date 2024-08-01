@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import ReactMarkdown from 'react-markdown';
@@ -56,7 +56,9 @@ const propTypes = {
       difficulties: PropTypes.string.isRequired,
     })
   ).isRequired,
-  description: PropTypes.string
+  description: PropTypes.string,
+  downloadLink: PropTypes.string, // Add downloadLink as a prop
+  spoilerFile: PropTypes.string, // Add spoilerFile as a prop
 };
 
 const ProjectPageTemplate = ({
@@ -68,8 +70,23 @@ const ProjectPageTemplate = ({
   date,
   status,
   songs,
-  description
+  description,
+  downloadLink,
+  spoilerFile,
 }) => {
+  const [spoilerContent, setSpoilerContent] = useState("");
+  const [isSpoilerVisible, setIsSpoilerVisible] = useState(false);
+  useEffect(() => {
+    if (spoilerFile) {
+      fetch(`${process.env.PUBLIC_URL}/spoilers/${spoilerFile}`)
+        .then((response) => response.text())
+        .then((text) => setSpoilerContent(text))
+        .catch((error) => console.error("Error fetching spoiler file:", error));
+    }
+  }, [spoilerFile]);
+  const toggleSpoilerVisibility = () => {
+    setIsSpoilerVisible(!isSpoilerVisible);
+  };
   return (
     <Element name={title} id={title.replace("Cringle ", "")}>
       <StyledProjectPage className="section">
@@ -118,7 +135,7 @@ const ProjectPageTemplate = ({
                     {songs.map((song, index) => (
                       <tr key={song.id}>
                         <td>{index + 1}</td>
-                        <td>{song.name}</td>
+                        <td>{song.name} {song.subtitle ? "- " + song.subtitle : ""}</td>
                         <td>{song.artist}</td>
                         <td>{song.difficulties}</td>
                       </tr>
@@ -126,16 +143,31 @@ const ProjectPageTemplate = ({
                   </tbody>
                 </Table>
               </div>
-              <div className="button-container">
-                <Button variant="primary" href="/path/to/download">
-                  Download Pack
-                </Button>
-              </div>
-              <div className="button-container">
-                <Link to="/spoiler">
-                  <Button variant="secondary">Spoiler Page</Button>
-                </Link>
-              </div>
+              {downloadLink ? (
+                <div className="button-container">
+                  <Button variant="primary" href={downloadLink}>
+                    Download Pack
+                  </Button>
+                </div>
+              ) : (
+                <div className="button-container">
+                  <Button variant="primary" href="">
+                    Download Unavailable
+                  </Button>
+                </div>
+              )}
+              {spoilerContent && (
+                <>
+                  <div className="button-container">
+                    <Button variant="secondary" onClick={toggleSpoilerVisibility}>
+                      {isSpoilerVisible ? "Hide Spoiler" : "Show Spoiler"}
+                    </Button>
+                  </div>
+                  <div className={`spoiler-container ${isSpoilerVisible ? 'visible' : ''}`}>
+                    <pre>{spoilerContent}</pre>
+                  </div>
+                </>
+              )}
             </Col>
           </Row>
         </Container>
