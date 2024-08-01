@@ -100,8 +100,16 @@ const StyledCard = ({ image, name, subtitle, artist, description, url, video, pa
   const handleImageError = () => {
     if (retry < 3) {
       console.log(`Retrying image for ${name}: attempt ${retry + 1}`);
-      setRetry(retry + 1);
-      setImgSrc(imagePath + `?retry=${retry + 1}`); // Add a query param to force reload
+      // On the last try
+      setRetry(retry + 1);      
+      if (retry === 2) {
+          // On the 5th try, try getting the image from github like: https://github.com/CrashCringle12/CrashCringle12.github.io/blob/gh-pages/images/othercharts/_common_menu_music__loop_.png?raw=true
+            setImgSrc("https://github.com/CrashCringle12/CrashCringle12.github.io/blob/gh-pages/images/charts/" + image + "?raw=true");
+          // Log that we are trying to get the image from github
+          console.log(`Trying to get image from github for ${name}`);
+      } else {
+        setImgSrc(imagePath + `?retry=${retry + 1}`); // Add a query param to force reload
+      }
     } else {
       setImgSrc(GH);
     }

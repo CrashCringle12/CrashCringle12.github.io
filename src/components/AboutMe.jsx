@@ -27,9 +27,19 @@ const StyledAboutMe = styled.section`
   .profile-img {
     width: 18rem;
     height: 18rem;
-    animation: ${spin} 3s infinite;
   }
 `;
+
+// const StyledAboutMe = styled.section`
+//   p {
+//     font-size: 1.25rem;
+//   }
+//   .profile-img {
+//     width: 18rem;
+//     height: 18rem;
+//     animation: ${spin} 3s infinite;
+//   }
+// `;
 // #endregion
 
 // #region component
